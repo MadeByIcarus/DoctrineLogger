@@ -5,7 +5,7 @@ extensions:
 
 
 databaseLogger:
-    entities: # array of fully classified class names (one class per line starting with '-')
+    entities: [] # array of fully classified class names
 
 
 
