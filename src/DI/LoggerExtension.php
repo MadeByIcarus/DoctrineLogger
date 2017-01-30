@@ -15,7 +15,7 @@ class LoggerExtension extends CompilerExtension implements IEntityProvider
         $config = $this->getConfig();
         Validators::assertField($config, 'entities', 'array');
 
-        $this->getContainerBuilder()->addDefinition($this->prefix("DatabaseLogger"))
+        $this->getContainerBuilder()->addDefinition($this->prefix("DoctrineLogger"))
             ->setClass(Logger::class)
             ->setTags(['kdyby.subscriber' => TRUE, 'run' => TRUE])
             ->addSetup('setEntityNamesToLog', [$config['entities']]);
