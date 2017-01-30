@@ -16,8 +16,7 @@
   },
   "authors": [
     {
-      "name": "Pavel Gajdoš",
-      "homepage": "http://paveljanda.com"
+      "name": "Pavel Gajdoš"
     }
   ],
   "autoload": {
