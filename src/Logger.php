@@ -12,6 +12,7 @@ use Nette\Utils\Json;
 
 class Logger implements Subscriber
 {
+
     private $entityNamesToLog = [];
 
     /** @var User */

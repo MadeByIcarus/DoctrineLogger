@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Log
 {
+
     const EVENT_INSERT = "insert";
     const EVENT_UPDATE = "update";
     const EVENT_DELETE = "delete";
@@ -54,15 +55,21 @@ class Log
      */
     private $entityId;
 
+
+
     function __construct()
     {
         $this->datetime = new \DateTime();
     }
 
+
+
     public function setUser($id)
     {
         $this->user = $id;
     }
+
+
 
     public function setEvent($event)
     {
@@ -70,15 +77,20 @@ class Log
     }
 
 
+
     public function setData($data)
     {
         $this->data = $data;
     }
 
+
+
     public function setEntityId($id)
     {
         $this->entityId = $id;
     }
+
+
 
     public function setTable($name)
     {

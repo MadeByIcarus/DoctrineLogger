@@ -10,6 +10,7 @@ use Nette\Utils\Validators;
 
 class LoggerExtension extends CompilerExtension implements IEntityProvider
 {
+
     public function loadConfiguration()
     {
         $config = $this->getConfig();
