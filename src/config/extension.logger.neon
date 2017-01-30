@@ -1,0 +1,11 @@
+# include this file in your config.neon
+
+extensions:
+    databaseLogger: Icarus\Doctrine\Logger\DI\LoggerExtension
+
+
+databaseLogger:
+    entities: # array of fully classified class names (one class per line starting with '-')
+
+
+
