@@ -32,7 +32,7 @@ class LoggerExtension extends CompilerExtension implements IEntityProvider
     function getEntityMappings()
     {
         return [
-            'Icarus\Doctrine\Logger' => __DIR__ . '/../'
+            'Icarus\Doctrine\Logger' => __DIR__ . '/Logger/'
         ];
     }
 }
