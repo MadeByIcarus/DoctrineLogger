@@ -2,7 +2,7 @@
 
 namespace Icarus\Doctrine\Logger;
 
-use Kdyby\Doctrine\Entities\Attributes\Identifier;
+use Icarus\Doctrine\Entities\Attributes\BigIdentifier;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,7 +18,7 @@ class Log
     const EVENT_LOGIN = "login";
     const EVENT_LOGOUT = "logout";
 
-    use Identifier;
+    use BigIdentifier;
 
     /**
      * @ORM\Column(type="datetime")
