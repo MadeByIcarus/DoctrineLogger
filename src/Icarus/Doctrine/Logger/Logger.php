@@ -52,6 +52,10 @@ class Logger implements Subscriber
 
     public function onFlush(OnFlushEventArgs $eventArgs)
     {
+        if (!$this->entityNamesToLog) {
+            return;
+        }
+        
         $em = $eventArgs->getEntityManager();
         $unitOfWork = $em->getUnitOfWork();
 
