@@ -2,6 +2,7 @@
 
 namespace Icarus\Doctrine\Logger;
 
+
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\UnitOfWork;
@@ -9,6 +10,7 @@ use Kdyby\Doctrine\Events;
 use Kdyby\Events\Subscriber;
 use Nette\Security\User;
 use Nette\Utils\Json;
+
 
 class Logger implements Subscriber
 {
@@ -55,7 +57,7 @@ class Logger implements Subscriber
         if (!$this->entityNamesToLog) {
             return;
         }
-        
+
         $em = $eventArgs->getEntityManager();
         $unitOfWork = $em->getUnitOfWork();
 
