@@ -29,11 +29,8 @@ class Logger implements Subscriber
 
     function __construct(EntityManager $entityManager, User $user)
     {
-        $this->user = $user;
         $this->entityManager = $entityManager;
-
-        $user->onLoggedIn[] = [$this, 'userLoggedIn'];
-        $user->onLoggedOut[] = [$this, 'userLoggedOut'];
+        $this->user = $user;
     }
 
 
@@ -47,7 +44,11 @@ class Logger implements Subscriber
 
     public function getSubscribedEvents()
     {
-        return [Events::onFlush];
+        return [
+            Events::onFlush,
+            User::class . "::onLoggedIn",
+            User::class . "::onLoggedOut"
+        ];
     }
 
 
@@ -120,7 +121,7 @@ class Logger implements Subscriber
 
 
 
-    public function userLoggedIn(User $user)
+    public function onLoggedIn(User $user)
     {
         $log = new Log();
         $log->setUser($user->getId());
@@ -130,7 +131,7 @@ class Logger implements Subscriber
 
 
 
-    public function userLoggedOut(User $user)
+    public function onLoggedOut(User $user)
     {
         $log = new Log();
         $log->setUser($user->getId());
