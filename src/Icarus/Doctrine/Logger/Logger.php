@@ -8,6 +8,7 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\UnitOfWork;
 use Kdyby\Doctrine\Events;
 use Kdyby\Events\Subscriber;
+use Nette\Http\Request;
 use Nette\Security\User;
 use Nette\Utils\Json;
 
@@ -25,12 +26,18 @@ class Logger implements Subscriber
      */
     private $entityManager;
 
+    /**
+     * @var Request
+     */
+    private $request;
 
 
-    function __construct(EntityManager $entityManager, User $user)
+
+    function __construct(EntityManager $entityManager, User $user, Request $request)
     {
         $this->entityManager = $entityManager;
         $this->user = $user;
+        $this->request = $request;
     }
 
 
@@ -106,6 +113,9 @@ class Logger implements Subscriber
             $log->setEntityId($entity->getId());
         }
 
+        $log->setAccessUrl($this->request->getUrl()->getAbsoluteUrl());
+        $log->setIpAddress($this->request->getRemoteAddress());
+
         $entityManager->persist($log);
         $unitOfWork->computeChangeSet(
             $entityManager->getClassMetadata(get_class($log)), $log
@@ -126,6 +136,7 @@ class Logger implements Subscriber
         $log = new Log();
         $log->setUser($user->getId());
         $log->setEvent(Log::EVENT_LOGIN);
+        $log->setIpAddress($this->request->getRemoteAddress());
         $this->entityManager->persist($log);
     }
 
@@ -136,6 +147,7 @@ class Logger implements Subscriber
         $log = new Log();
         $log->setUser($user->getId());
         $log->setEvent(Log::EVENT_LOGOUT);
+        $log->setIpAddress($this->request->getRemoteAddress());
         $this->entityManager->persist($log);
     }
 }

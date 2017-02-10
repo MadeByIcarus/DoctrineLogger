@@ -2,8 +2,10 @@
 
 namespace Icarus\Doctrine\Logger;
 
+
 use Icarus\Doctrine\Entities\Attributes\BigIdentifier;
 use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * @ORM\Entity
@@ -55,6 +57,16 @@ class Log
      */
     private $entityId;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $accessUrl;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $ipAddress;
+
 
 
     function __construct()
@@ -96,4 +108,25 @@ class Log
     {
         $this->table = $name;
     }
+
+
+
+    /**
+     * @param mixed $accessUrl
+     */
+    public function setAccessUrl($accessUrl)
+    {
+        $this->accessUrl = $accessUrl;
+    }
+
+
+
+    /**
+     * @param mixed $ipAddress
+     */
+    public function setIpAddress($ipAddress)
+    {
+        $this->ipAddress = $ipAddress;
+    }
+
 }
