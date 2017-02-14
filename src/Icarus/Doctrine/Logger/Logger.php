@@ -136,6 +136,7 @@ class Logger implements Subscriber
         $log = new Log();
         $log->setUser($user->getId());
         $log->setEvent(Log::EVENT_LOGIN);
+        $log->setAccessUrl($this->request->getUrl()->getAbsoluteUrl());
         $log->setIpAddress($this->request->getRemoteAddress());
         $this->entityManager->persist($log);
     }
@@ -147,6 +148,7 @@ class Logger implements Subscriber
         $log = new Log();
         $log->setUser($user->getId());
         $log->setEvent(Log::EVENT_LOGOUT);
+        $log->setAccessUrl($this->request->getUrl()->getAbsoluteUrl());
         $log->setIpAddress($this->request->getRemoteAddress());
         $this->entityManager->persist($log);
     }
