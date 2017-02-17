@@ -22,6 +22,7 @@ class Log
     const EVENT_INVALID_LOGIN = "invalid_login";
     const EVENT_INVALID_PASSWORD = "invalid_password";
     const EVENT_ACCESS_DENIED = "access_denied";
+    const EVENT_TOO_MANY_LOGIN_ATTEMPTS = "access_denied_too_many_attempts";
 
     use BigIdentifier;
 

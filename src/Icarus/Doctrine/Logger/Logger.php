@@ -9,6 +9,7 @@ use Doctrine\ORM\UnitOfWork;
 use Kdyby\Doctrine\Events;
 use Kdyby\Events\Subscriber;
 use Nette\Http\Request;
+use Nette\InvalidArgumentException;
 use Nette\Security\IAuthenticator;
 use Nette\Security\User;
 use Nette\Utils\Json;
@@ -168,8 +169,11 @@ class Logger implements Subscriber
             case IAuthenticator::NOT_APPROVED:
                 $event = Log::EVENT_ACCESS_DENIED;
                 break;
+            case IAuthenticator::FAILURE:
+                $event = Log::EVENT_TOO_MANY_LOGIN_ATTEMPTS;
+                break;
             default:
-                $event = "error";
+                throw new InvalidArgumentException("Invalid code $code for invalid authentication log.");
         }
 
         $log = new Log();
