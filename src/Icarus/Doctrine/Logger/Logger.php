@@ -9,6 +9,7 @@ use Doctrine\ORM\UnitOfWork;
 use Kdyby\Doctrine\Events;
 use Kdyby\Events\Subscriber;
 use Nette\Http\Request;
+use Nette\Security\IAuthenticator;
 use Nette\Security\User;
 use Nette\Utils\Json;
 
