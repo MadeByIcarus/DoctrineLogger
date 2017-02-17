@@ -152,4 +152,30 @@ class Logger implements Subscriber
         $log->setIpAddress($this->request->getRemoteAddress());
         $this->entityManager->persist($log);
     }
+
+
+
+    public function onInvalidAuthentication($login, $code)
+    {
+        switch ($code) {
+            case IAuthenticator::IDENTITY_NOT_FOUND:
+                $event = Log::EVENT_INVALID_LOGIN;
+                break;
+            case IAuthenticator::INVALID_CREDENTIAL:
+                $event = Log::EVENT_INVALID_PASSWORD;
+                break;
+            case IAuthenticator::NOT_APPROVED:
+                $event = Log::EVENT_ACCESS_DENIED;
+                break;
+            default:
+                $event = "error";
+        }
+
+        $log = new Log();
+        $log->setUser($login);
+        $log->setEvent($event);
+        $log->setAccessUrl($this->request->getUrl()->getAbsoluteUrl());
+        $log->setIpAddress($this->request->getRemoteAddress());
+        $this->entityManager->persist($log);
+    }
 }

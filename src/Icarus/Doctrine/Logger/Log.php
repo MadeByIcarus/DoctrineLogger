@@ -19,6 +19,9 @@ class Log
 
     const EVENT_LOGIN = "login";
     const EVENT_LOGOUT = "logout";
+    const EVENT_INVALID_LOGIN = "invalid_login";
+    const EVENT_INVALID_PASSWORD = "invalid_password";
+    const EVENT_ACCESS_DENIED = "access_denied";
 
     use BigIdentifier;
 
