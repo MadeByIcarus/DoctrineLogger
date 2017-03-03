@@ -128,6 +128,13 @@ class Logger implements Subscriber
 
     private function processChanges($changeSet)
     {
+        foreach ($changeSet as $key => $changes) {
+            foreach ($changes as $index => $change) {
+                if (is_object($change) && !$change instanceof \Serializable && method_exists($change, "getId") && $change->getId()) {
+                    $changeSet[$key][$index] = $change->getId();
+                }
+            }
+        }
         return Json::encode($changeSet);
     }
 
