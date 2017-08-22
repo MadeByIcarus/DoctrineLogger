@@ -189,5 +189,6 @@ class Logger implements Subscriber
         $log->setAccessUrl($this->request->getUrl()->getAbsoluteUrl());
         $log->setIpAddress($this->request->getRemoteAddress());
         $this->entityManager->persist($log);
+        $this->entityManager->flush();
     }
 }
