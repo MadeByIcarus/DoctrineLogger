@@ -62,7 +62,7 @@ class Log
     private $entityId;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $accessUrl;
 
